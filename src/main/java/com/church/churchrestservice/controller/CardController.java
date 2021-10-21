@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/home")
+@RequestMapping(value = "/church")
 @CrossOrigin
 public class CardController {
 
     private CardService cardService;
-    private String hello;
 
     @Autowired
     public CardController (CardService cardService) {
