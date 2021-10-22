@@ -15,8 +15,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/church")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8100")
 public class CardController {
+
 
     private CardService cardService;
 
