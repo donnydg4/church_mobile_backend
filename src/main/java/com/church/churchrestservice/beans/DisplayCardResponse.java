@@ -22,7 +22,7 @@ public class DisplayCardResponse {
     private String title;
     private String description;
     private Date startDate;
-    private int category;
+    private String category;
     private String type;
     private boolean learnMore;
     private Date endDate;
