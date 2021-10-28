@@ -1,0 +1,15 @@
+[qgtunnel.wizard0]
+accept = "127.0.0.1:27017"
+connect = "cluster0-shard-00-00.2cehr.mongodb.net:27017"
+transparent = true
+
+[qgtunnel.wizard1]
+accept = "127.0.0.2:27017"
+connect = "cluster0-shard-00-01.2cehr.mongodb.net:27017"
+transparent = true
+
+[qgtunnel.wizard2]
+accept = "127.0.0.3:27017"
+connect = "cluster0-shard-00-02.2cehr.mongodb.net:27017"
+transparent = true
+
