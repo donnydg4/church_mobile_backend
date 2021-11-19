@@ -1,10 +1,7 @@
 package com.church.churchrestservice.controller;
 
 
-import com.church.churchrestservice.beans.BasePageCardResponse;
-import com.church.churchrestservice.beans.DisplayCardResponse;
-import com.church.churchrestservice.beans.EventsAndActivities;
-import com.church.churchrestservice.beans.SeriesAndMinistries;
+import com.church.churchrestservice.beans.*;
 import com.church.churchrestservice.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,6 +41,16 @@ public class CardController {
     @GetMapping(value = "/eventsAndActivities")
     public ResponseEntity<List<EventsAndActivities>> getAllEventsAndActivities() {
         return new ResponseEntity<>(cardService.getAllEventsAndActivities(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/watchCards")
+    public ResponseEntity<List<AllWatchCardsResponse>> getAllWatchCards() {
+        return new ResponseEntity<>(cardService.getAllWatchCards(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/seriesCards")
+    public ResponseEntity<List<SeriesCardResponse>> getAllSeriesCards() {
+        return new ResponseEntity<>(cardService.getAllSeriesCards(), HttpStatus.OK);
     }
 }
 
