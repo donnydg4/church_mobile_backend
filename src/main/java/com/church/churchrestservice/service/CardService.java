@@ -4,6 +4,7 @@ import com.church.churchrestservice.beans.*;
 import com.church.churchrestservice.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -29,20 +30,20 @@ public class CardService {
         this.seriesCardRepository = seriesCardRepository;
     }
 
-    public List<DisplayCardResponse> getAllDisplayCards() {
+    public Flux<DisplayCardResponse> getAllDisplayCards() {
         return displayCardRepository.findAll();
     }
 
-    public List<BasePageCardResponse> getAllBasePageCards() {
+    public Flux<BasePageCardResponse> getAllBasePageCards() {
         return basePageCardRepository.findAll();
     }
 
-    public List<EventsAndActivities> getAllEventsAndActivities() { return eventsAndActivitiesRepository.findAll(); }
+    public Flux<EventsAndActivities> getAllEventsAndActivities() { return eventsAndActivitiesRepository.findAll(); }
 
-    public List<SeriesAndMinistries> getAllSeriesAndMinistries() { return seriesAndMinistriesRepository.findAll(); }
+    public Flux<SeriesAndMinistries> getAllSeriesAndMinistries() { return seriesAndMinistriesRepository.findAll(); }
 
-    public List<AllWatchCardsResponse> getAllWatchCards() { return allWatchCardsRepository.findAll(); }
+    public Flux<AllWatchCardsResponse> getAllWatchCards() { return allWatchCardsRepository.findAll(); }
 
-    public List<SeriesCardResponse> getAllSeriesCards() { return seriesCardRepository.findAll(); }
+    public Flux<SeriesCardResponse> getAllSeriesCards() { return seriesCardRepository.findAll(); }
 
 }
