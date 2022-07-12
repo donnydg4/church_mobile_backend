@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
-import java.util.List;
-
 @Service
 public class CardService {
 
@@ -34,9 +32,7 @@ public class CardService {
         return displayCardRepository.findAll();
     }
 
-    public Flux<BasePageCardResponse> getAllBasePageCards() {
-        return basePageCardRepository.findAll();
-    }
+    public Flux<BasePageCardResponse> getAllBasePageCards() {return basePageCardRepository.findAll(); }
 
     public Flux<EventsAndActivities> getAllEventsAndActivities() { return eventsAndActivitiesRepository.findAll(); }
 
