@@ -5,6 +5,7 @@ import com.church.churchrestservice.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class CardService {
@@ -15,17 +16,20 @@ public class CardService {
     private SeriesAndMinistriesRepository seriesAndMinistriesRepository;
     private AllWatchCardsRepository allWatchCardsRepository;
     private SeriesCardRepository seriesCardRepository;
+    private YearSelectionRepository yearSelectionRepository;
 
     @Autowired
     public CardService(DisplayCardRepository displayCardRepository, BasePageCardRepository basePageCardRepository,
                         EventsAndActivitiesRepository eventsAndActivitiesRepository, SeriesAndMinistriesRepository seriesAndMinistriesRepository,
-                       AllWatchCardsRepository allWatchCardsRepository, SeriesCardRepository seriesCardRepository) {
+                       AllWatchCardsRepository allWatchCardsRepository, SeriesCardRepository seriesCardRepository,
+                       YearSelectionRepository yearSelectionRepository) {
         this.displayCardRepository = displayCardRepository;
         this.basePageCardRepository = basePageCardRepository;
         this.eventsAndActivitiesRepository = eventsAndActivitiesRepository;
         this.seriesAndMinistriesRepository = seriesAndMinistriesRepository;
         this.allWatchCardsRepository = allWatchCardsRepository;
         this.seriesCardRepository = seriesCardRepository;
+        this.yearSelectionRepository = yearSelectionRepository;
     }
 
     public Flux<DisplayCardResponse> getAllDisplayCards() {
@@ -41,5 +45,7 @@ public class CardService {
     public Flux<AllWatchCardsResponse> getAllWatchCards() { return allWatchCardsRepository.findAll(); }
 
     public Flux<SeriesCardResponse> getAllSeriesCards() { return seriesCardRepository.findAll(); }
+
+    public Flux<YearSelection> getAllYearSelections() { return yearSelectionRepository.findAll() ; }
 
 }

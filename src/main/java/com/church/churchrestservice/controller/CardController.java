@@ -46,13 +46,14 @@ public class CardController {
     }
 
     @GetMapping(value = "/watchCards")
-    public Flux<AllWatchCardsResponse> getAllWatchCards() {
-        return cardService.getAllWatchCards();
-    }
+    public Flux<AllWatchCardsResponse> getAllWatchCards() { return cardService.getAllWatchCards(); }
 
     @GetMapping(value = "/seriesCards")
     public Flux<SeriesCardResponse> getAllSeriesCards() {
         return cardService.getAllSeriesCards();
     }
+
+    @GetMapping(value = "/yearSelectionCards")
+    public Flux<YearSelection> getAllYearSelectionCards() { return cardService.getAllYearSelections(); }
 }
 
