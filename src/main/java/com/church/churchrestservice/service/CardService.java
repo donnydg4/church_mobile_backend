@@ -17,12 +17,13 @@ public class CardService {
     private AllWatchCardsRepository allWatchCardsRepository;
     private SeriesCardRepository seriesCardRepository;
     private YearSelectionRepository yearSelectionRepository;
+    private AllChurchInformationRepository allChurchInformationRepository;
 
     @Autowired
     public CardService(DisplayCardRepository displayCardRepository, BasePageCardRepository basePageCardRepository,
                         EventsAndActivitiesRepository eventsAndActivitiesRepository, SeriesAndMinistriesRepository seriesAndMinistriesRepository,
                        AllWatchCardsRepository allWatchCardsRepository, SeriesCardRepository seriesCardRepository,
-                       YearSelectionRepository yearSelectionRepository) {
+                       YearSelectionRepository yearSelectionRepository, AllChurchInformationRepository allChurchInformationRepository) {
         this.displayCardRepository = displayCardRepository;
         this.basePageCardRepository = basePageCardRepository;
         this.eventsAndActivitiesRepository = eventsAndActivitiesRepository;
@@ -30,6 +31,7 @@ public class CardService {
         this.allWatchCardsRepository = allWatchCardsRepository;
         this.seriesCardRepository = seriesCardRepository;
         this.yearSelectionRepository = yearSelectionRepository;
+        this.allChurchInformationRepository = allChurchInformationRepository;
     }
 
     public Flux<DisplayCardResponse> getAllDisplayCards() {
@@ -47,5 +49,7 @@ public class CardService {
     public Flux<SeriesCardResponse> getAllSeriesCards() { return seriesCardRepository.findAll(); }
 
     public Flux<YearSelection> getAllYearSelections() { return yearSelectionRepository.findAll() ; }
+
+    public Flux<AllChurchInformation> getAllChurchInformation() { return allChurchInformationRepository.findAll(); }
 
 }
