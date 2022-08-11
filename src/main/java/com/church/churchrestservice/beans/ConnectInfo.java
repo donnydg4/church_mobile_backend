@@ -9,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ConnectInfo {
 
+    private String imageUrl;
     private String address;
     private String phoneNumber;
     private String websiteUrl;

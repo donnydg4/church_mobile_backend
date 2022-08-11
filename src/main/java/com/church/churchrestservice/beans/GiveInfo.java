@@ -11,7 +11,8 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class GiveInfo {
 
-    private ArrayList<String> title;
+    private String bigTitle;
+    private ArrayList<String> titles;
     private ArrayList<String> foundations;
     private ArrayList<String> tithing;
     private ArrayList<String> giving;
