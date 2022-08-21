@@ -4,11 +4,10 @@ package com.church.churchrestservice.controller;
 import com.church.churchrestservice.beans.*;
 import com.church.churchrestservice.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -19,38 +18,53 @@ public class CardController {
     private CardService cardService;
 
     @Autowired
-    public CardController (CardService cardService) {
+    public CardController(CardService cardService) {
         this.cardService = cardService;
     }
 
     @GetMapping(value = "/displayCards")
-    public ResponseEntity<List<DisplayCardResponse>> getAllDisplayCards() {
-        return new ResponseEntity<>(cardService.getAllDisplayCards(), HttpStatus.OK);
+    public Flux<DisplayCardResponse> getAllDisplayCards() {
+        return cardService.getAllDisplayCards();
     }
 
     @GetMapping(value = "/basePageCards")
-    public ResponseEntity<List<BasePageCardResponse>> getAllBaseCards() {
-        return new ResponseEntity<>(cardService.getAllBasePageCards(), HttpStatus.OK);
+    public Flux<BasePageCardResponse> getAllBaseCards() {
+        return cardService.getAllBasePageCards();
     }
 
     @GetMapping(value = "/seriesAndMinistries")
-    public ResponseEntity<List<SeriesAndMinistries>> getAllSeriesAndMinistries() {
-        return new ResponseEntity<>(cardService.getAllSeriesAndMinistries(), HttpStatus.OK);
+    public Flux<SeriesAndMinistries> getAllSeriesAndMinistries() {
+        return cardService.getAllSeriesAndMinistries();
     }
 
     @GetMapping(value = "/eventsAndActivities")
-    public ResponseEntity<List<EventsAndActivities>> getAllEventsAndActivities() {
-        return new ResponseEntity<>(cardService.getAllEventsAndActivities(), HttpStatus.OK);
+    public Flux<EventsAndActivities> getAllEventsAndActivities() {
+        return cardService.getAllEventsAndActivities();
     }
 
     @GetMapping(value = "/watchCards")
-    public ResponseEntity<List<AllWatchCardsResponse>> getAllWatchCards() {
-        return new ResponseEntity<>(cardService.getAllWatchCards(), HttpStatus.OK);
+    public Flux<AllWatchCardsResponse> getAllWatchCards() {
+        return cardService.getAllWatchCards();
     }
 
     @GetMapping(value = "/seriesCards")
-    public ResponseEntity<List<SeriesCardResponse>> getAllSeriesCards() {
-        return new ResponseEntity<>(cardService.getAllSeriesCards(), HttpStatus.OK);
+    public Flux<SeriesCardResponse> getAllSeriesCards() {
+        return cardService.getAllSeriesCards();
+    }
+
+    @GetMapping(value = "/yearSelectionCards")
+    public Flux<YearSelection> getAllYearSelectionCards() {
+        return cardService.getAllYearSelections();
+    }
+
+    @GetMapping(value = "/seriesSelectionCards")
+    public Flux<SeriesSelection> getAllSeriesOrNonSeriesCards() {
+        return cardService.getAllSeriesOrNonSeriesSelection();
+    }
+
+    @GetMapping(value = "/allChurchInformation")
+    public Mono<AllChurchInformation> getAllChurchInformation() {
+        return cardService.getAllChurchInformation();
     }
 }
 

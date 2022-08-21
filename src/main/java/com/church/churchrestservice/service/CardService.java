@@ -4,8 +4,8 @@ import com.church.churchrestservice.beans.*;
 import com.church.churchrestservice.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class CardService {
@@ -16,33 +16,60 @@ public class CardService {
     private SeriesAndMinistriesRepository seriesAndMinistriesRepository;
     private AllWatchCardsRepository allWatchCardsRepository;
     private SeriesCardRepository seriesCardRepository;
+    private YearSelectionRepository yearSelectionRepository;
+    private AllChurchInformationRepository allChurchInformationRepository;
+    private SeriesSelectionRepository seriesSelectionRepository;
 
     @Autowired
     public CardService(DisplayCardRepository displayCardRepository, BasePageCardRepository basePageCardRepository,
-                        EventsAndActivitiesRepository eventsAndActivitiesRepository, SeriesAndMinistriesRepository seriesAndMinistriesRepository,
-                       AllWatchCardsRepository allWatchCardsRepository, SeriesCardRepository seriesCardRepository) {
+                       EventsAndActivitiesRepository eventsAndActivitiesRepository, SeriesAndMinistriesRepository seriesAndMinistriesRepository,
+                       AllWatchCardsRepository allWatchCardsRepository, SeriesCardRepository seriesCardRepository,
+                       YearSelectionRepository yearSelectionRepository, AllChurchInformationRepository allChurchInformationRepository,
+                       SeriesSelectionRepository seriesSelectionRepository) {
         this.displayCardRepository = displayCardRepository;
         this.basePageCardRepository = basePageCardRepository;
         this.eventsAndActivitiesRepository = eventsAndActivitiesRepository;
         this.seriesAndMinistriesRepository = seriesAndMinistriesRepository;
         this.allWatchCardsRepository = allWatchCardsRepository;
         this.seriesCardRepository = seriesCardRepository;
+        this.yearSelectionRepository = yearSelectionRepository;
+        this.allChurchInformationRepository = allChurchInformationRepository;
+        this.seriesSelectionRepository = seriesSelectionRepository;
     }
 
-    public List<DisplayCardResponse> getAllDisplayCards() {
+    public Flux<DisplayCardResponse> getAllDisplayCards() {
         return displayCardRepository.findAll();
     }
 
-    public List<BasePageCardResponse> getAllBasePageCards() {
+    public Flux<BasePageCardResponse> getAllBasePageCards() {
         return basePageCardRepository.findAll();
     }
 
-    public List<EventsAndActivities> getAllEventsAndActivities() { return eventsAndActivitiesRepository.findAll(); }
+    public Flux<EventsAndActivities> getAllEventsAndActivities() {
+        return eventsAndActivitiesRepository.findAll();
+    }
 
-    public List<SeriesAndMinistries> getAllSeriesAndMinistries() { return seriesAndMinistriesRepository.findAll(); }
+    public Flux<SeriesAndMinistries> getAllSeriesAndMinistries() {
+        return seriesAndMinistriesRepository.findAll();
+    }
 
-    public List<AllWatchCardsResponse> getAllWatchCards() { return allWatchCardsRepository.findAll(); }
+    public Flux<AllWatchCardsResponse> getAllWatchCards() {
+        return allWatchCardsRepository.findAll();
+    }
 
-    public List<SeriesCardResponse> getAllSeriesCards() { return seriesCardRepository.findAll(); }
+    public Flux<SeriesCardResponse> getAllSeriesCards() {
+        return seriesCardRepository.findAll();
+    }
 
+    public Flux<YearSelection> getAllYearSelections() {
+        return yearSelectionRepository.findAll();
+    }
+
+    public Flux<SeriesSelection> getAllSeriesOrNonSeriesSelection() {
+        return seriesSelectionRepository.findAll();
+    }
+
+    public Mono<AllChurchInformation> getAllChurchInformation() {
+        return allChurchInformationRepository.findById("1");
+    }
 }
