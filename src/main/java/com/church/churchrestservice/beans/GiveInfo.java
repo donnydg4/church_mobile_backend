@@ -11,6 +11,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class GiveInfo {
 
+    private String imageUrl;
     private String bigTitle;
     private ArrayList<String> titles;
     private ArrayList<String> foundations;

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @Setter
 @NoArgsConstructor
 public class AboutTheChurch {
-
+    private String imageUrl;
     private ArrayList<String> titles;
     private ArrayList<String> descriptions;
     private String coreValuesTitle;

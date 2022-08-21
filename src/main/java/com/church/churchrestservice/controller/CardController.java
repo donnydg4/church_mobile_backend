@@ -6,6 +6,7 @@ import com.church.churchrestservice.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 
 @CrossOrigin
@@ -17,7 +18,7 @@ public class CardController {
     private CardService cardService;
 
     @Autowired
-    public CardController (CardService cardService) {
+    public CardController(CardService cardService) {
         this.cardService = cardService;
     }
 
@@ -42,7 +43,9 @@ public class CardController {
     }
 
     @GetMapping(value = "/watchCards")
-    public Flux<AllWatchCardsResponse> getAllWatchCards() { return cardService.getAllWatchCards(); }
+    public Flux<AllWatchCardsResponse> getAllWatchCards() {
+        return cardService.getAllWatchCards();
+    }
 
     @GetMapping(value = "/seriesCards")
     public Flux<SeriesCardResponse> getAllSeriesCards() {
@@ -50,9 +53,18 @@ public class CardController {
     }
 
     @GetMapping(value = "/yearSelectionCards")
-    public Flux<YearSelection> getAllYearSelectionCards() { return cardService.getAllYearSelections(); }
+    public Flux<YearSelection> getAllYearSelectionCards() {
+        return cardService.getAllYearSelections();
+    }
+
+    @GetMapping(value = "/seriesSelectionCards")
+    public Flux<SeriesSelection> getAllSeriesOrNonSeriesCards() {
+        return cardService.getAllSeriesOrNonSeriesSelection();
+    }
 
     @GetMapping(value = "/allChurchInformation")
-    public Flux<AllChurchInformation> getAllChurchInformation() { return cardService.getAllChurchInformation(); }
+    public Mono<AllChurchInformation> getAllChurchInformation() {
+        return cardService.getAllChurchInformation();
+    }
 }
 

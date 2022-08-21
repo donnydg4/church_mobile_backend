@@ -18,12 +18,14 @@ public class CardService {
     private SeriesCardRepository seriesCardRepository;
     private YearSelectionRepository yearSelectionRepository;
     private AllChurchInformationRepository allChurchInformationRepository;
+    private SeriesSelectionRepository seriesSelectionRepository;
 
     @Autowired
     public CardService(DisplayCardRepository displayCardRepository, BasePageCardRepository basePageCardRepository,
-                        EventsAndActivitiesRepository eventsAndActivitiesRepository, SeriesAndMinistriesRepository seriesAndMinistriesRepository,
+                       EventsAndActivitiesRepository eventsAndActivitiesRepository, SeriesAndMinistriesRepository seriesAndMinistriesRepository,
                        AllWatchCardsRepository allWatchCardsRepository, SeriesCardRepository seriesCardRepository,
-                       YearSelectionRepository yearSelectionRepository, AllChurchInformationRepository allChurchInformationRepository) {
+                       YearSelectionRepository yearSelectionRepository, AllChurchInformationRepository allChurchInformationRepository,
+                       SeriesSelectionRepository seriesSelectionRepository) {
         this.displayCardRepository = displayCardRepository;
         this.basePageCardRepository = basePageCardRepository;
         this.eventsAndActivitiesRepository = eventsAndActivitiesRepository;
@@ -32,24 +34,42 @@ public class CardService {
         this.seriesCardRepository = seriesCardRepository;
         this.yearSelectionRepository = yearSelectionRepository;
         this.allChurchInformationRepository = allChurchInformationRepository;
+        this.seriesSelectionRepository = seriesSelectionRepository;
     }
 
     public Flux<DisplayCardResponse> getAllDisplayCards() {
         return displayCardRepository.findAll();
     }
 
-    public Flux<BasePageCardResponse> getAllBasePageCards() {return basePageCardRepository.findAll(); }
+    public Flux<BasePageCardResponse> getAllBasePageCards() {
+        return basePageCardRepository.findAll();
+    }
 
-    public Flux<EventsAndActivities> getAllEventsAndActivities() { return eventsAndActivitiesRepository.findAll(); }
+    public Flux<EventsAndActivities> getAllEventsAndActivities() {
+        return eventsAndActivitiesRepository.findAll();
+    }
 
-    public Flux<SeriesAndMinistries> getAllSeriesAndMinistries() { return seriesAndMinistriesRepository.findAll(); }
+    public Flux<SeriesAndMinistries> getAllSeriesAndMinistries() {
+        return seriesAndMinistriesRepository.findAll();
+    }
 
-    public Flux<AllWatchCardsResponse> getAllWatchCards() { return allWatchCardsRepository.findAll(); }
+    public Flux<AllWatchCardsResponse> getAllWatchCards() {
+        return allWatchCardsRepository.findAll();
+    }
 
-    public Flux<SeriesCardResponse> getAllSeriesCards() { return seriesCardRepository.findAll(); }
+    public Flux<SeriesCardResponse> getAllSeriesCards() {
+        return seriesCardRepository.findAll();
+    }
 
-    public Flux<YearSelection> getAllYearSelections() { return yearSelectionRepository.findAll() ; }
+    public Flux<YearSelection> getAllYearSelections() {
+        return yearSelectionRepository.findAll();
+    }
 
-    public Flux<AllChurchInformation> getAllChurchInformation() { return allChurchInformationRepository.findAll(); }
+    public Flux<SeriesSelection> getAllSeriesOrNonSeriesSelection() {
+        return seriesSelectionRepository.findAll();
+    }
 
+    public Mono<AllChurchInformation> getAllChurchInformation() {
+        return allChurchInformationRepository.findById("1");
+    }
 }
