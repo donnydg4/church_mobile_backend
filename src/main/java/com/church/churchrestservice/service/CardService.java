@@ -1,6 +1,7 @@
 package com.church.churchrestservice.service;
 
 import com.church.churchrestservice.beans.*;
+import com.church.churchrestservice.beans.calendar.CalendarModel;
 import com.church.churchrestservice.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,13 +20,17 @@ public class CardService {
     private YearSelectionRepository yearSelectionRepository;
     private AllChurchInformationRepository allChurchInformationRepository;
     private SeriesSelectionRepository seriesSelectionRepository;
+    //website
+    private CalendarEventsRepository calendarEventsRepository;
+    private AllEventsRepository allEventsRepository;
 
     @Autowired
     public CardService(DisplayCardRepository displayCardRepository, BasePageCardRepository basePageCardRepository,
                        EventsAndActivitiesRepository eventsAndActivitiesRepository, SeriesAndMinistriesRepository seriesAndMinistriesRepository,
                        AllWatchCardsRepository allWatchCardsRepository, SeriesCardRepository seriesCardRepository,
                        YearSelectionRepository yearSelectionRepository, AllChurchInformationRepository allChurchInformationRepository,
-                       SeriesSelectionRepository seriesSelectionRepository) {
+                       SeriesSelectionRepository seriesSelectionRepository, CalendarEventsRepository calendarEventsRepository,
+                       AllEventsRepository allEventsRepository) {
         this.displayCardRepository = displayCardRepository;
         this.basePageCardRepository = basePageCardRepository;
         this.eventsAndActivitiesRepository = eventsAndActivitiesRepository;
@@ -35,6 +40,8 @@ public class CardService {
         this.yearSelectionRepository = yearSelectionRepository;
         this.allChurchInformationRepository = allChurchInformationRepository;
         this.seriesSelectionRepository = seriesSelectionRepository;
+        this.allEventsRepository = allEventsRepository;
+        this.calendarEventsRepository = calendarEventsRepository;
     }
 
     public Flux<DisplayCardResponse> getAllDisplayCards() {
@@ -71,5 +78,13 @@ public class CardService {
 
     public Mono<AllChurchInformation> getAllChurchInformation() {
         return allChurchInformationRepository.findById("1");
+    }
+
+    public Flux<CalendarModel> getAllCalendarEvents() {
+        return calendarEventsRepository.findAll();
+    }
+
+    public Flux<MainEventsModel> getAllEvents() {
+        return allEventsRepository.findAll();
     }
 }
