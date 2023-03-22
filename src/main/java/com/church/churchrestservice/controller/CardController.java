@@ -2,9 +2,13 @@ package com.church.churchrestservice.controller;
 
 
 import com.church.churchrestservice.beans.*;
+import com.church.churchrestservice.beans.calendar.CalendarModel;
 import com.church.churchrestservice.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -65,6 +69,16 @@ public class CardController {
     @GetMapping(value = "/allChurchInformation")
     public Mono<AllChurchInformation> getAllChurchInformation() {
         return cardService.getAllChurchInformation();
+    }
+
+    @GetMapping(value = "/website/events")
+    public Flux<MainEventsModel> getAllEvents() {
+        return cardService.getAllEvents();
+    }
+
+    @GetMapping(value = "/website/calendar")
+    public Flux<CalendarModel> getAllCalendarEvents() {
+        return cardService.getAllCalendarEvents();
     }
 }
 
