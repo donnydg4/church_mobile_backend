@@ -2,13 +2,11 @@ package com.church.churchrestservice.controller;
 
 
 import com.church.churchrestservice.beans.*;
+import com.church.churchrestservice.beans.app.*;
 import com.church.churchrestservice.beans.calendar.CalendarModel;
 import com.church.churchrestservice.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -26,59 +24,63 @@ public class CardController {
         this.cardService = cardService;
     }
 
+
     @GetMapping(value = "/displayCards")
-    public Flux<DisplayCardResponse> getAllDisplayCards() {
+    private Flux<DisplayCardResponse> getAllDisplayCards() {
         return cardService.getAllDisplayCards();
     }
 
     @GetMapping(value = "/basePageCards")
-    public Flux<BasePageCardResponse> getAllBaseCards() {
+    private Flux<BasePageCardResponse> getAllBaseCards() {
         return cardService.getAllBasePageCards();
     }
 
     @GetMapping(value = "/seriesAndMinistries")
-    public Flux<SeriesAndMinistries> getAllSeriesAndMinistries() {
+    private Flux<SeriesAndMinistries> getAllSeriesAndMinistries() {
         return cardService.getAllSeriesAndMinistries();
     }
 
     @GetMapping(value = "/eventsAndActivities")
-    public Flux<EventsAndActivities> getAllEventsAndActivities() {
+    private Flux<EventsAndActivities> getAllEventsAndActivities() {
         return cardService.getAllEventsAndActivities();
     }
 
     @GetMapping(value = "/watchCards")
-    public Flux<AllWatchCardsResponse> getAllWatchCards() {
+    private Flux<AllWatchCardsResponse> getAllWatchCards() {
         return cardService.getAllWatchCards();
     }
 
     @GetMapping(value = "/seriesCards")
-    public Flux<SeriesCardResponse> getAllSeriesCards() {
+    private Flux<SeriesCardResponse> getAllSeriesCards() {
         return cardService.getAllSeriesCards();
     }
 
-    @GetMapping(value = "/yearSelectionCards")
-    public Flux<YearSelection> getAllYearSelectionCards() {
-        return cardService.getAllYearSelections();
-    }
-
-    @GetMapping(value = "/seriesSelectionCards")
-    public Flux<SeriesSelection> getAllSeriesOrNonSeriesCards() {
-        return cardService.getAllSeriesOrNonSeriesSelection();
-    }
-
     @GetMapping(value = "/allChurchInformation")
-    public Mono<AllChurchInformation> getAllChurchInformation() {
+    private Mono<AllChurchInformation> getAllChurchInformation() {
         return cardService.getAllChurchInformation();
     }
 
+
+    /////////////////// Website
     @GetMapping(value = "/website/events")
-    public Flux<MainEventsModel> getAllEvents() {
+    private Flux<MainEventsModel> getAllEvents() {
         return cardService.getAllEvents();
     }
 
     @GetMapping(value = "/website/calendar")
-    public Flux<CalendarModel> getAllCalendarEvents() {
+    private Flux<CalendarModel> getAllCalendarEvents() {
         return cardService.getAllCalendarEvents();
     }
+
+    @PostMapping(value = "/website/add")
+    private void addObject(@RequestBody AllWebsiteInformationModel allWebsiteInformationModel) {
+        cardService.addWebsiteInformation(allWebsiteInformationModel);
+    }
+
+    @GetMapping(value = "/website/allWebsiteInformation")
+    private Mono<AllWebsiteInformationModel> getAllWebsiteChurchInformation() {
+        return cardService.getAllWebsiteInformation();
+    }
+
 }
 

@@ -1,4 +1,4 @@
-package com.church.churchrestservice.beans;
+package com.church.churchrestservice.beans.app;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,10 +8,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(value = "year_selection")
-public class YearSelection {
+@Document(value = "allpagecards")
+public class BasePageCardResponse {
 
-    private int year;
+    private String type;
     private String imageUrl;
+    private String title;
     private String category;
 }
