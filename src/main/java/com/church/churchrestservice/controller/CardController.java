@@ -1,9 +1,13 @@
 package com.church.churchrestservice.controller;
 
 
-import com.church.churchrestservice.beans.*;
 import com.church.churchrestservice.beans.app.*;
 import com.church.churchrestservice.beans.calendar.CalendarModel;
+import com.church.churchrestservice.beans.shared.AllWatchCardsResponse;
+import com.church.churchrestservice.beans.shared.DisplayCardResponse;
+import com.church.churchrestservice.beans.shared.SeriesCardResponse;
+import com.church.churchrestservice.beans.website.AllWebsiteInformationModel;
+import com.church.churchrestservice.beans.website.MainEventsModel;
 import com.church.churchrestservice.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

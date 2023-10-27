@@ -1,6 +1,11 @@
-package com.church.churchrestservice.beans;
+package com.church.churchrestservice.beans.website;
 
 import com.church.churchrestservice.beans.calendar.CalendarModel;
+import com.church.churchrestservice.beans.shared.AllWatchCardsResponse;
+import com.church.churchrestservice.beans.shared.DisplayCardResponse;
+import com.church.churchrestservice.beans.shared.SeriesCardResponse;
+import com.church.churchrestservice.beans.website.MainEventsModel;
+import com.church.churchrestservice.beans.website.SomeChurchWebsiteInformation;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

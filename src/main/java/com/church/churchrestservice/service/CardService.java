@@ -1,10 +1,15 @@
 package com.church.churchrestservice.service;
 
-import com.church.churchrestservice.beans.*;
+import com.church.churchrestservice.beans.app.AllChurchInformation;
 import com.church.churchrestservice.beans.app.BasePageCardResponse;
 import com.church.churchrestservice.beans.app.EventsAndActivities;
 import com.church.churchrestservice.beans.app.SeriesAndMinistries;
 import com.church.churchrestservice.beans.calendar.CalendarModel;
+import com.church.churchrestservice.beans.shared.AllWatchCardsResponse;
+import com.church.churchrestservice.beans.shared.DisplayCardResponse;
+import com.church.churchrestservice.beans.shared.SeriesCardResponse;
+import com.church.churchrestservice.beans.website.AllWebsiteInformationModel;
+import com.church.churchrestservice.beans.website.MainEventsModel;
 import com.church.churchrestservice.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
