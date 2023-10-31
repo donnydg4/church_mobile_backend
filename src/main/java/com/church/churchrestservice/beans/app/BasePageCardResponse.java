@@ -1,20 +1,18 @@
-package com.church.churchrestservice.beans;
+package com.church.churchrestservice.beans.app;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(value = "all_events")
-public class MainEventsModel {
+@Document(value = "allpagecards")
+public class BasePageCardResponse {
+
+    private String type;
     private String imageUrl;
     private String title;
-    private String description;
-    private String type;
-    private Date date;
+    private String category;
 }

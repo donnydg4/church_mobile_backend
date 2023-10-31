@@ -1,4 +1,4 @@
-package com.church.churchrestservice.beans;
+package com.church.churchrestservice.beans.shared;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.church.churchrestservice.beans;
+package com.church.churchrestservice.beans.app;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,10 +8,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(value = "year_selection")
-public class YearSelection {
+@Document(value = "series_or_not_devotionals")
+public class SeriesSelection {
 
-    private int year;
     private String imageUrl;
     private String category;
+    private Boolean series;
+    private String title;
 }

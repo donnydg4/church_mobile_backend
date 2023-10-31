@@ -1,23 +1,20 @@
-package com.church.churchrestservice.beans;
+package com.church.churchrestservice.beans.website;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(value = "series_cards")
-public class SeriesCardResponse {
-
-    private String type;
+@Document(value = "all_events")
+public class MainEventsModel {
     private String imageUrl;
     private String title;
-    private String category;
+    private String description;
+    private String type;
     private Date date;
-    private ArrayList<AllWatchCardsResponse> sermons;
 }
