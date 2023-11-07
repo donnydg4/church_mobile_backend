@@ -1,9 +1,7 @@
 package com.church.churchrestservice.beans.website;
 
 import com.church.churchrestservice.beans.calendar.CalendarModel;
-import com.church.churchrestservice.beans.shared.AllWatchCardsResponse;
-import com.church.churchrestservice.beans.shared.DisplayCardResponse;
-import com.church.churchrestservice.beans.shared.SeriesCardResponse;
+import com.church.churchrestservice.beans.shared.*;
 import com.church.churchrestservice.beans.website.MainEventsModel;
 import com.church.churchrestservice.beans.website.SomeChurchWebsiteInformation;
 import lombok.Getter;
@@ -24,6 +22,11 @@ public class AllWebsiteInformationModel {
 
     private SomeChurchWebsiteInformation allWebsiteInformation;
     private ArrayList<DisplayCardResponse> displayCards;
+    private MinistriesWeSupportModel ministriesWeSupportPage;
+    private LeadershipModel leadershipPage;
+    private OurMinistriesModel ourMinistriesPage;
+    private BusinessesWeSupportModel businessesWeSupportPage;
+    private MissionsModel missionsPage;
     private ArrayList<CalendarModel> allCalendarInformation;
     private ArrayList<MainEventsModel> mainEvents;
     private ArrayList<AllWatchCardsResponse> allWatchCards;

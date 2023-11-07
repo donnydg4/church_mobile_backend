@@ -5,9 +5,7 @@ import com.church.churchrestservice.beans.app.BasePageCardResponse;
 import com.church.churchrestservice.beans.app.EventsAndActivities;
 import com.church.churchrestservice.beans.app.SeriesAndMinistries;
 import com.church.churchrestservice.beans.calendar.CalendarModel;
-import com.church.churchrestservice.beans.shared.AllWatchCardsResponse;
-import com.church.churchrestservice.beans.shared.DisplayCardResponse;
-import com.church.churchrestservice.beans.shared.SeriesCardResponse;
+import com.church.churchrestservice.beans.shared.*;
 import com.church.churchrestservice.beans.website.AllWebsiteInformationModel;
 import com.church.churchrestservice.beans.website.MainEventsModel;
 import com.church.churchrestservice.repository.*;
@@ -15,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 @Service
 public class CardService {
@@ -87,11 +88,54 @@ public class CardService {
     }
 
     public void addWebsiteInformation(AllWebsiteInformationModel allWebsiteInformationModel) {
+
+        //ministries we support
+        MinistriesWeSupportModel ministriesWeSupportModel = new MinistriesWeSupportModel();
+        ministriesWeSupportModel.setTitle(allWebsiteInformationModel.getMinistriesWeSupportPage().getTitle());
+        ministriesWeSupportModel.setCoverPhoto(allWebsiteInformationModel.getMinistriesWeSupportPage().getCoverPhoto());
+        ministriesWeSupportModel.setDisplayCards(allWebsiteInformationModel.getDisplayCards());
+
+        //leadership
+        LeadershipModel leadershipModel = new LeadershipModel();
+        leadershipModel.setTitle(allWebsiteInformationModel.getLeadershipPage().getTitle());
+        leadershipModel.setCoverPhoto(allWebsiteInformationModel.getLeadershipPage().getCoverPhoto());
+        leadershipModel.setDisplayCards(allWebsiteInformationModel.getDisplayCards());
+
+        //our ministries
+        OurMinistriesModel ourMinistriesModel = new OurMinistriesModel();
+        ourMinistriesModel.setTitle(allWebsiteInformationModel.getOurMinistriesPage().getTitle());
+        ourMinistriesModel.setCoverPhoto(allWebsiteInformationModel.getOurMinistriesPage().getCoverPhoto());
+        ourMinistriesModel.setDisplayCards(allWebsiteInformationModel.getDisplayCards());
+
+        //Businesses We Support
+        BusinessesWeSupportModel businessesWeSupportModel = new BusinessesWeSupportModel();
+        businessesWeSupportModel.setTitle(allWebsiteInformationModel.getBusinessesWeSupportPage().getTitle());
+        businessesWeSupportModel.setCoverPhoto(allWebsiteInformationModel.getBusinessesWeSupportPage().getCoverPhoto());
+        businessesWeSupportModel.setDisplayCards(allWebsiteInformationModel.getDisplayCards());
+
+        //Mission Trips
+        MissionsModel missionsModel = new MissionsModel();
+        missionsModel.setTitle(allWebsiteInformationModel.getMissionsPage().getTitle());
+        missionsModel.setCoverPhoto(allWebsiteInformationModel.getMissionsPage().getCoverPhoto());
+        missionsModel.setDisplayCards(allWebsiteInformationModel.getDisplayCards());
+
+        //set AllChurchInformation
+        allWebsiteInformationModel.setMinistriesWeSupportPage(ministriesWeSupportModel);
+        allWebsiteInformationModel.setLeadershipPage(leadershipModel);
+        allWebsiteInformationModel.setOurMinistriesPage(ourMinistriesModel);
+        allWebsiteInformationModel.setMissionsPage(missionsModel);
+        allWebsiteInformationModel.setBusinessesWeSupportPage(businessesWeSupportModel);
+
+
         allChurchWebsiteInformationRepository.save(allWebsiteInformationModel).block();
     }
 
     public Mono<AllWebsiteInformationModel> getAllWebsiteInformation() {
         return allChurchWebsiteInformationRepository.findById("1");
+    }
+
+    private ArrayList<DisplayCardResponse> sort(String type) {
+        return new ArrayList<>();
     }
 
 }
