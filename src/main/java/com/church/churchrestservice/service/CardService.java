@@ -134,8 +134,4 @@ public class CardService {
         return allChurchWebsiteInformationRepository.findById("1");
     }
 
-    private ArrayList<DisplayCardResponse> sort(String type) {
-        return new ArrayList<>();
-    }
-
 }
