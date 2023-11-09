@@ -2,8 +2,6 @@ package com.church.churchrestservice.beans.website;
 
 import com.church.churchrestservice.beans.calendar.CalendarModel;
 import com.church.churchrestservice.beans.shared.*;
-import com.church.churchrestservice.beans.website.MainEventsModel;
-import com.church.churchrestservice.beans.website.SomeChurchWebsiteInformation;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
