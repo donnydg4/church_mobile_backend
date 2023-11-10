@@ -1,7 +1,7 @@
 package com.church.churchrestservice.beans.website;
 
-import com.church.churchrestservice.beans.shared.PrayerInfo;
 import com.church.churchrestservice.beans.app.ServiceInfo;
+import com.church.churchrestservice.beans.shared.PrayerInfo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

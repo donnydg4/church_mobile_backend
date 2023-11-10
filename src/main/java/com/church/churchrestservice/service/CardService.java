@@ -14,9 +14,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 @Service
 public class CardService {
 
@@ -126,16 +123,11 @@ public class CardService {
         allWebsiteInformationModel.setMissionsPage(missionsModel);
         allWebsiteInformationModel.setBusinessesWeSupportPage(businessesWeSupportModel);
 
-
         allChurchWebsiteInformationRepository.save(allWebsiteInformationModel).block();
     }
 
     public Mono<AllWebsiteInformationModel> getAllWebsiteInformation() {
         return allChurchWebsiteInformationRepository.findById("1");
-    }
-
-    private ArrayList<DisplayCardResponse> sort(String type) {
-        return new ArrayList<>();
     }
 
 }
