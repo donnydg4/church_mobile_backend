@@ -123,7 +123,6 @@ public class CardService {
         allWebsiteInformationModel.setMissionsPage(missionsModel);
         allWebsiteInformationModel.setBusinessesWeSupportPage(businessesWeSupportModel);
 
-
         allChurchWebsiteInformationRepository.save(allWebsiteInformationModel).block();
     }
 
