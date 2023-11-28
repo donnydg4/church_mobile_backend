@@ -29,4 +29,5 @@ public class AllWebsiteInformationModel {
     private ArrayList<MainEventsModel> mainEvents;
     private ArrayList<AllWatchCardsResponse> allWatchCards;
     private ArrayList<SeriesCardResponse> allSeriesCards;
+    private StatementOfFaithModel statementOfFaith;
 }
