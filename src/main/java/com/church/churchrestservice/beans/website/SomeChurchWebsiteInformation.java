@@ -14,4 +14,5 @@ public class SomeChurchWebsiteInformation {
     private OurChurch ourChurch;
     private ServiceInfo serviceInfo;
     private PrayerInfo prayerInfo;
+    private DirectionsModel directions;
 }
