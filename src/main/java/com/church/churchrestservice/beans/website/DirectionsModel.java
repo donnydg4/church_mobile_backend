@@ -9,5 +9,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DirectionsModel {
     private String title;
+    private String imageUrl;
     private AddressModel address;
 }

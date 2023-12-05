@@ -10,10 +10,11 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class CalendarEventsModel {
-    private String title;
-    private String description;
     private String imageUrl;
+    private String title;
     private Date date;
     private String location;
     private String time;
+    private String description;
+    private String type;
 }

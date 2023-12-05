@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+
 @Service
 public class CardService {
 
@@ -86,35 +88,69 @@ public class CardService {
 
     public void addWebsiteInformation(AllWebsiteInformationModel allWebsiteInformationModel) {
 
+        //create Display Cards list for each model
+        ArrayList<DisplayCardResponse> ministriesArrayListCards = new ArrayList<>();
+        ArrayList<DisplayCardResponse> leadershipArrayListCards = new ArrayList<>();
+        ArrayList<DisplayCardResponse> ourMinistriesArrayListCards = new ArrayList<>();
+        ArrayList<DisplayCardResponse> businessesWeSupportArrayListCards = new ArrayList<>();
+        ArrayList<DisplayCardResponse> missionsArrayListCards = new ArrayList<>();
+
+        //Sort the lists
+        for(DisplayCardResponse displayCardResponse: allWebsiteInformationModel.getDisplayCards()) {
+            if (displayCardResponse.getType().equals("BUSINESS")) {
+                businessesWeSupportArrayListCards.add(displayCardResponse);
+            }
+            if (displayCardResponse.getType().equals("OUR MINISTRY")) {
+                ourMinistriesArrayListCards.add(displayCardResponse);
+            }
+            if (displayCardResponse.getType().equals("MISSIONS TRIP")) {
+                missionsArrayListCards.add(displayCardResponse);
+            }
+            if (displayCardResponse.getType().equals("CHURCH LEADERSHIP")) {
+                leadershipArrayListCards.add(displayCardResponse);
+            }
+            if (displayCardResponse.getType().equals("SUPPORTED MINISTRY")) {
+                ministriesArrayListCards.add(displayCardResponse);
+            }
+        }
+        System.out.println(allWebsiteInformationModel.getDisplayCards());
+        System.out.println(allWebsiteInformationModel.getDisplayCards().size());
+        System.out.println(ministriesArrayListCards.size());
+        System.out.println(leadershipArrayListCards.size());
+        System.out.println(ourMinistriesArrayListCards.size());
+        System.out.println(businessesWeSupportArrayListCards.size());
+        System.out.println(missionsArrayListCards.size());
+
+
         //ministries we support
         MinistriesWeSupportModel ministriesWeSupportModel = new MinistriesWeSupportModel();
         ministriesWeSupportModel.setTitle(allWebsiteInformationModel.getMinistriesWeSupportPage().getTitle());
         ministriesWeSupportModel.setCoverPhoto(allWebsiteInformationModel.getMinistriesWeSupportPage().getCoverPhoto());
-        ministriesWeSupportModel.setDisplayCards(allWebsiteInformationModel.getDisplayCards());
+        ministriesWeSupportModel.setDisplayCards(ministriesArrayListCards);
 
         //leadership
         LeadershipModel leadershipModel = new LeadershipModel();
         leadershipModel.setTitle(allWebsiteInformationModel.getLeadershipPage().getTitle());
         leadershipModel.setCoverPhoto(allWebsiteInformationModel.getLeadershipPage().getCoverPhoto());
-        leadershipModel.setDisplayCards(allWebsiteInformationModel.getDisplayCards());
+        leadershipModel.setDisplayCards(leadershipArrayListCards);
 
         //our ministries
         OurMinistriesModel ourMinistriesModel = new OurMinistriesModel();
         ourMinistriesModel.setTitle(allWebsiteInformationModel.getOurMinistriesPage().getTitle());
         ourMinistriesModel.setCoverPhoto(allWebsiteInformationModel.getOurMinistriesPage().getCoverPhoto());
-        ourMinistriesModel.setDisplayCards(allWebsiteInformationModel.getDisplayCards());
+        ourMinistriesModel.setDisplayCards(ourMinistriesArrayListCards);
 
         //Businesses We Support
         BusinessesWeSupportModel businessesWeSupportModel = new BusinessesWeSupportModel();
         businessesWeSupportModel.setTitle(allWebsiteInformationModel.getBusinessesWeSupportPage().getTitle());
         businessesWeSupportModel.setCoverPhoto(allWebsiteInformationModel.getBusinessesWeSupportPage().getCoverPhoto());
-        businessesWeSupportModel.setDisplayCards(allWebsiteInformationModel.getDisplayCards());
+        businessesWeSupportModel.setDisplayCards(businessesWeSupportArrayListCards);
 
         //Mission Trips
         MissionsModel missionsModel = new MissionsModel();
         missionsModel.setTitle(allWebsiteInformationModel.getMissionsPage().getTitle());
         missionsModel.setCoverPhoto(allWebsiteInformationModel.getMissionsPage().getCoverPhoto());
-        missionsModel.setDisplayCards(allWebsiteInformationModel.getDisplayCards());
+        missionsModel.setDisplayCards(ministriesArrayListCards);
 
         //set AllChurchInformation
         allWebsiteInformationModel.setMinistriesWeSupportPage(ministriesWeSupportModel);

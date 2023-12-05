@@ -11,7 +11,12 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class HomePage {
     private String videoUrl;
-    private ArrayList<String> whoWeAre;
-    private ArrayList<String> newHere;
-    private ArrayList<String> getApp;
+    private String serviceTimesTitle;
+    private String serviceTimes;
+    private String whoWeAreTitle;
+    private String whoWeAreDescription;
+    private String whoWeAreImageUrl;
+    private String newHereTitle;
+    private String newHereDescription;
+    private String newHereImageUrl;
 }
