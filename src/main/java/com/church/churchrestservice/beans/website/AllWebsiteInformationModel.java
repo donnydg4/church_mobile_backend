@@ -26,7 +26,7 @@ public class AllWebsiteInformationModel {
     private BusinessesWeSupportModel businessesWeSupportPage;
     private MissionsModel missionsPage;
     private ArrayList<CalendarModel> allCalendarInformation;
-    private ArrayList<MainEventsModel> mainEvents;
+    private MainEventsModel mainEvents;
     private ArrayList<AllWatchCardsResponse> allWatchCards;
     private ArrayList<SeriesCardResponse> allSeriesCards;
     private StatementOfFaithModel statementOfFaith;
