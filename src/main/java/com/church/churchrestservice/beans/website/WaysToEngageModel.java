@@ -7,7 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OurChurch {
-    private String hello;
-    //TODO: Figure out what to have here
+public class WaysToEngageModel {
+    private String type;
+    private String imageUrl;
+    private String description;
 }

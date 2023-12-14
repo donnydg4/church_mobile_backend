@@ -19,4 +19,8 @@ public class HomePage {
     private String newHereTitle;
     private String newHereDescription;
     private String newHereImageUrl;
+    private String appTitle;
+    private String appDescription;
+    private ArrayList<String> appImages;
+    private ArrayList<WaysToEngageModel> waysToEngage;
 }
