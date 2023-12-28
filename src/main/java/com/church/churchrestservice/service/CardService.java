@@ -150,7 +150,7 @@ public class CardService {
         MissionsModel missionsModel = new MissionsModel();
         missionsModel.setTitle(allWebsiteInformationModel.getMissionsPage().getTitle());
         missionsModel.setCoverPhoto(allWebsiteInformationModel.getMissionsPage().getCoverPhoto());
-        missionsModel.setDisplayCards(ministriesArrayListCards);
+        missionsModel.setDisplayCards(missionsArrayListCards);
 
         //set AllChurchInformation
         allWebsiteInformationModel.setMinistriesWeSupportPage(ministriesWeSupportModel);
