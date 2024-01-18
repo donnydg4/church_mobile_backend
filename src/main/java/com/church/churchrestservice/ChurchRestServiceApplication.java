@@ -8,10 +8,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootApplication
 @EnableMongoRepositories
 public class ChurchRestServiceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ChurchRestServiceApplication.class, args);
     }
-
 }
 
