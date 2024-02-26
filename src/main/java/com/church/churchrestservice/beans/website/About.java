@@ -10,10 +10,10 @@ import java.util.ArrayList;
 @Setter
 @NoArgsConstructor
 public class About {
+    private String crazyForJesusImage;
     private ArrayList<String> crazyForJesus;
-    private ArrayList<String> ourMission;
-    private ArrayList<String> ourVision;
-    private ArrayList<String> ourTarget;
+    private ArrayList<String> missionVisionTargetTitles;
+    private ArrayList<String> missionVisionTargetDescriptions;
     private ArrayList<String> coreValues;
     private ArrayList<String> declarations;
 }
