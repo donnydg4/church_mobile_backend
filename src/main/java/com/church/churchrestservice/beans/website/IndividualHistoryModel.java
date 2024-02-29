@@ -4,15 +4,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
+import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class OurChurch {
-    private String coverPhoto;
+public class IndividualHistoryModel {
+    private Date date;
     private String title;
-    private History history;
-    private About about;
-    private Belief beliefs;
+    private String description;
 }
