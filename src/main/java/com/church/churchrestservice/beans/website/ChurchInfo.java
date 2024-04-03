@@ -9,10 +9,9 @@ import java.util.ArrayList;
 @Getter
 @Setter
 @NoArgsConstructor
-public class About {
-    private String crazyForJesusImage;
-    private ArrayList<String> crazyForJesus;
+public class ChurchInfo {
+    private String title;
+    private ArrayList<String> descriptions;
     private ArrayList<String> missionVisionTargetTitles;
-    private ArrayList<String> missionVisionTargetDescriptions;
-    private ArrayList<ChurchInfo> churchInfo;
+    private ArrayList<String> missionVisionTarget;
 }
