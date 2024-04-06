@@ -17,4 +17,5 @@ public class CalendarEventsModel {
     private String time;
     private String description;
     private String type;
+    private boolean featured;
 }
