@@ -10,6 +10,7 @@ import java.util.ArrayList;
 @Setter
 @NoArgsConstructor
 public class HomePage {
+    private String homePageTitle;
     private String videoUrl;
     private String serviceTimesTitle;
     private String serviceTimes;
