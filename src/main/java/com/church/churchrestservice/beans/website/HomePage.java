@@ -11,6 +11,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class HomePage {
     private String homePageTitle;
+    private Emergency emergency;
     private String videoUrl;
     private String serviceTimesTitle;
     private String serviceTimes;
