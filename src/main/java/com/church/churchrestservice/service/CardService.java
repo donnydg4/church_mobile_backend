@@ -4,6 +4,7 @@ import com.church.churchrestservice.beans.app.AllChurchInformation;
 import com.church.churchrestservice.beans.app.BasePageCardResponse;
 import com.church.churchrestservice.beans.app.EventsAndActivities;
 import com.church.churchrestservice.beans.app.SeriesAndMinistries;
+import com.church.churchrestservice.beans.calendar.CalendarEventsModel;
 import com.church.churchrestservice.beans.calendar.CalendarModel;
 import com.church.churchrestservice.beans.shared.*;
 import com.church.churchrestservice.beans.website.AllWebsiteInformationModel;
@@ -152,12 +153,26 @@ public class CardService {
         missionsModel.setCoverPhoto(allWebsiteInformationModel.getMissionsPage().getCoverPhoto());
         missionsModel.setDisplayCards(missionsArrayListCards);
 
-        //set AllChurchInformation
+        //set AllChurchInformation for Display Cards
         allWebsiteInformationModel.setMinistriesWeSupportPage(ministriesWeSupportModel);
         allWebsiteInformationModel.setLeadershipPage(leadershipModel);
         allWebsiteInformationModel.setOurMinistriesPage(ourMinistriesModel);
         allWebsiteInformationModel.setMissionsPage(missionsModel);
         allWebsiteInformationModel.setBusinessesWeSupportPage(businessesWeSupportModel);
+
+
+        //set calendar events to have the same start date as the model it's in
+        ArrayList<CalendarModel> allCalendarInformation;
+        allCalendarInformation = allWebsiteInformationModel.getAllCalendarInformation();
+
+        //change all the start date to be their parent start date regardless of what happens
+        for (CalendarModel calendarModel: allCalendarInformation) {
+            for (CalendarEventsModel calendarEventsModel: calendarModel.getEvents()) {
+                calendarEventsModel.setStartDate(calendarModel.getDate());
+            }
+        }
+
+        allWebsiteInformationModel.setAllCalendarInformation(allCalendarInformation);
 
         allChurchWebsiteInformationRepository.save(allWebsiteInformationModel).block();
     }
