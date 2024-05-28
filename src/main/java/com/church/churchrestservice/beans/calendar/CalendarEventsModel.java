@@ -12,7 +12,8 @@ import java.util.Date;
 public class CalendarEventsModel {
     private String imageUrl;
     private String title;
-    private Date date;
+    private Date startDate;
+    private Date endDate;
     private String location;
     private String time;
     private String description;
