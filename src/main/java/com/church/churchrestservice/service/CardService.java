@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 @Service
@@ -89,6 +92,7 @@ public class CardService {
 
     public void addWebsiteInformation(AllWebsiteInformationModel allWebsiteInformationModel) {
 
+        //TODO: ALL OF THIS NEEDS TO BE MOVED TO A SEPARATE POST CALL along with the DATA modifications as this is very inefficient every time do to this.
         //create Display Cards list for each model
         ArrayList<DisplayCardResponse> ministriesArrayListCards = new ArrayList<>();
         ArrayList<DisplayCardResponse> leadershipArrayListCards = new ArrayList<>();
@@ -169,6 +173,15 @@ public class CardService {
         for (CalendarModel calendarModel: allCalendarInformation) {
             for (CalendarEventsModel calendarEventsModel: calendarModel.getEvents()) {
                 calendarEventsModel.setStartDate(calendarModel.getDate());
+                Instant todaysDate = Instant.now();
+                System.out.println(todaysDate);
+                LocalDate date1 = LocalDate.now();
+                System.out.println(date1);
+                LocalDate date2 = LocalDate.now();
+                System.out.println(date2);
+                if (date1.equals(date2)) {
+                    System.out.println("date 1 equals date2");
+                }
             }
         }
 

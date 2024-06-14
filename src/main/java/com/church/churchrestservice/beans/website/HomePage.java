@@ -22,5 +22,5 @@ public class HomePage {
     private String newHereDescription;
     private String newHereImageUrl;
     private ArrayList<WaysToEngageModel> waysToEngage;
-    private ArrayList<String> monthlyEvents;
+    private String establishedImg;
 }
