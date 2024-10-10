@@ -145,11 +145,6 @@ public class CardService {
         ourMinistriesModel.setCoverPhoto(allWebsiteInformationModel.getOurMinistriesPage().getCoverPhoto());
         ourMinistriesModel.setDisplayCards(ourMinistriesArrayListCards);
 
-        //Businesses We Support
-        BusinessesWeSupportModel businessesWeSupportModel = new BusinessesWeSupportModel();
-        businessesWeSupportModel.setTitle(allWebsiteInformationModel.getBusinessesWeSupportPage().getTitle());
-        businessesWeSupportModel.setCoverPhoto(allWebsiteInformationModel.getBusinessesWeSupportPage().getCoverPhoto());
-        businessesWeSupportModel.setDisplayCards(businessesWeSupportArrayListCards);
 
         //Mission Trips
         MissionsModel missionsModel = new MissionsModel();
@@ -162,7 +157,6 @@ public class CardService {
         allWebsiteInformationModel.setLeadershipPage(leadershipModel);
         allWebsiteInformationModel.setOurMinistriesPage(ourMinistriesModel);
         allWebsiteInformationModel.setMissionsPage(missionsModel);
-        allWebsiteInformationModel.setBusinessesWeSupportPage(businessesWeSupportModel);
 
 
         //set calendar events to have the same start date as the model it's in
