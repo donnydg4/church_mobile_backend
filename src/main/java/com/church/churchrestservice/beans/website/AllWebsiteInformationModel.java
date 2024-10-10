@@ -23,7 +23,6 @@ public class AllWebsiteInformationModel {
     private MinistriesWeSupportModel ministriesWeSupportPage;
     private LeadershipModel leadershipPage;
     private OurMinistriesModel ourMinistriesPage;
-    private BusinessesWeSupportModel businessesWeSupportPage;
     private MissionsModel missionsPage;
     private ArrayList<CalendarModel> allCalendarInformation;
     private MainEventsModel mainEvents;
