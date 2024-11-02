@@ -97,14 +97,10 @@ public class CardService {
         ArrayList<DisplayCardResponse> ministriesArrayListCards = new ArrayList<>();
         ArrayList<DisplayCardResponse> leadershipArrayListCards = new ArrayList<>();
         ArrayList<DisplayCardResponse> ourMinistriesArrayListCards = new ArrayList<>();
-        ArrayList<DisplayCardResponse> businessesWeSupportArrayListCards = new ArrayList<>();
         ArrayList<DisplayCardResponse> missionsArrayListCards = new ArrayList<>();
 
         //Sort the lists
         for(DisplayCardResponse displayCardResponse: allWebsiteInformationModel.getDisplayCards()) {
-            if (displayCardResponse.getType().equals("BUSINESS")) {
-                businessesWeSupportArrayListCards.add(displayCardResponse);
-            }
             if (displayCardResponse.getType().equals("OUR MINISTRY")) {
                 ourMinistriesArrayListCards.add(displayCardResponse);
             }
@@ -123,7 +119,6 @@ public class CardService {
         System.out.println(ministriesArrayListCards.size());
         System.out.println(leadershipArrayListCards.size());
         System.out.println(ourMinistriesArrayListCards.size());
-        System.out.println(businessesWeSupportArrayListCards.size());
         System.out.println(missionsArrayListCards.size());
 
 
