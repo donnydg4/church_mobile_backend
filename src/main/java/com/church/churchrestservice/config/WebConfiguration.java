@@ -1,4 +1,4 @@
-package com.church.churchrestservice;
+package com.church.churchrestservice.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;

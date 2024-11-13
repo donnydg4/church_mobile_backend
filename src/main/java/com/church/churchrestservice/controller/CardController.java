@@ -1,6 +1,5 @@
 package com.church.churchrestservice.controller;
 
-
 import com.church.churchrestservice.beans.app.AllChurchInformation;
 import com.church.churchrestservice.beans.app.BasePageCardResponse;
 import com.church.churchrestservice.beans.app.EventsAndActivities;
