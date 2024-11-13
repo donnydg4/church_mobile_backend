@@ -1,6 +1,5 @@
 package com.church.churchrestservice.controller;
 
-
 import com.church.churchrestservice.beans.app.AllChurchInformation;
 import com.church.churchrestservice.beans.app.BasePageCardResponse;
 import com.church.churchrestservice.beans.app.EventsAndActivities;
@@ -18,11 +17,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/church")
 public class CardController {
-
 
     private CardService cardService;
 
@@ -30,7 +28,6 @@ public class CardController {
     public CardController(CardService cardService) {
         this.cardService = cardService;
     }
-
 
     @GetMapping(value = "/displayCards")
     private Flux<DisplayCardResponse> getAllDisplayCards() {

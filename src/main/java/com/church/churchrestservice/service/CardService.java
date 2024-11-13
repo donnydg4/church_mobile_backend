@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Service
@@ -89,18 +91,15 @@ public class CardService {
 
     public void addWebsiteInformation(AllWebsiteInformationModel allWebsiteInformationModel) {
 
+        //TODO: ALL OF THIS NEEDS TO BE MOVED TO A SEPARATE POST CALL along with the DATA modifications as this is very inefficient every time do to this.
         //create Display Cards list for each model
         ArrayList<DisplayCardResponse> ministriesArrayListCards = new ArrayList<>();
         ArrayList<DisplayCardResponse> leadershipArrayListCards = new ArrayList<>();
         ArrayList<DisplayCardResponse> ourMinistriesArrayListCards = new ArrayList<>();
-        ArrayList<DisplayCardResponse> businessesWeSupportArrayListCards = new ArrayList<>();
         ArrayList<DisplayCardResponse> missionsArrayListCards = new ArrayList<>();
 
         //Sort the lists
         for(DisplayCardResponse displayCardResponse: allWebsiteInformationModel.getDisplayCards()) {
-            if (displayCardResponse.getType().equals("BUSINESS")) {
-                businessesWeSupportArrayListCards.add(displayCardResponse);
-            }
             if (displayCardResponse.getType().equals("OUR MINISTRY")) {
                 ourMinistriesArrayListCards.add(displayCardResponse);
             }
@@ -119,7 +118,6 @@ public class CardService {
         System.out.println(ministriesArrayListCards.size());
         System.out.println(leadershipArrayListCards.size());
         System.out.println(ourMinistriesArrayListCards.size());
-        System.out.println(businessesWeSupportArrayListCards.size());
         System.out.println(missionsArrayListCards.size());
 
 
@@ -141,11 +139,6 @@ public class CardService {
         ourMinistriesModel.setCoverPhoto(allWebsiteInformationModel.getOurMinistriesPage().getCoverPhoto());
         ourMinistriesModel.setDisplayCards(ourMinistriesArrayListCards);
 
-        //Businesses We Support
-        BusinessesWeSupportModel businessesWeSupportModel = new BusinessesWeSupportModel();
-        businessesWeSupportModel.setTitle(allWebsiteInformationModel.getBusinessesWeSupportPage().getTitle());
-        businessesWeSupportModel.setCoverPhoto(allWebsiteInformationModel.getBusinessesWeSupportPage().getCoverPhoto());
-        businessesWeSupportModel.setDisplayCards(businessesWeSupportArrayListCards);
 
         //Mission Trips
         MissionsModel missionsModel = new MissionsModel();
@@ -158,7 +151,6 @@ public class CardService {
         allWebsiteInformationModel.setLeadershipPage(leadershipModel);
         allWebsiteInformationModel.setOurMinistriesPage(ourMinistriesModel);
         allWebsiteInformationModel.setMissionsPage(missionsModel);
-        allWebsiteInformationModel.setBusinessesWeSupportPage(businessesWeSupportModel);
 
 
         //set calendar events to have the same start date as the model it's in
@@ -169,6 +161,15 @@ public class CardService {
         for (CalendarModel calendarModel: allCalendarInformation) {
             for (CalendarEventsModel calendarEventsModel: calendarModel.getEvents()) {
                 calendarEventsModel.setStartDate(calendarModel.getDate());
+                Instant todaysDate = Instant.now();
+                System.out.println(todaysDate);
+                LocalDate date1 = LocalDate.now();
+                System.out.println(date1);
+                LocalDate date2 = LocalDate.now();
+                System.out.println(date2);
+                if (date1.equals(date2)) {
+                    System.out.println("date 1 equals date2");
+                }
             }
         }
 
