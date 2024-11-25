@@ -26,6 +26,24 @@ public class AllWebsiteInformationModel {
     private ArrayList<AllWatchCardsResponse> allWatchCards;
     private ArrayList<SeriesCardResponse> allSeriesCards;
     private StatementOfFaithModel statementOfFaith;
+    private SozoPageModel sozoPage;
+    private WorshipPageModel worshipPage;
+
+    public SozoPageModel getSozoPage() {
+        return sozoPage;
+    }
+
+    public void setSozoPage(SozoPageModel sozoPage) {
+        this.sozoPage = sozoPage;
+    }
+
+    public WorshipPageModel getWorshipPage() {
+        return worshipPage;
+    }
+
+    public void setWorshipPage(WorshipPageModel worshipPage) {
+        this.worshipPage = worshipPage;
+    }
 
     public StatementOfFaithModel getStatementOfFaith() {
         return statementOfFaith;
