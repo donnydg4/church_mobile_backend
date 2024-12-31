@@ -9,6 +9,33 @@ public class KidYouthModel {
     private ArrayList<String> victorsLetterImages;
     private ArrayList<String> victorsWords;
     private ArrayList<String> victorsDescriptions;
+    private String visitHeader;
+    private ArrayList<String> visitTitles;
+    private ArrayList<String> visitDescriptions;
+
+    public ArrayList<String> getVisitDescriptions() {
+        return visitDescriptions;
+    }
+
+    public void setVisitDescriptions(ArrayList<String> visitDescriptions) {
+        this.visitDescriptions = visitDescriptions;
+    }
+
+    public ArrayList<String> getVisitTitles() {
+        return visitTitles;
+    }
+
+    public void setVisitTitles(ArrayList<String> visitTitles) {
+        this.visitTitles = visitTitles;
+    }
+
+    public String getVisitHeader() {
+        return visitHeader;
+    }
+
+    public void setVisitHeader(String visitHeader) {
+        this.visitHeader = visitHeader;
+    }
 
     public ArrayList<String> getVictorsLetterImages() {
         return victorsLetterImages;
