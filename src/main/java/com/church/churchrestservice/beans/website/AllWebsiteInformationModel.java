@@ -28,6 +28,15 @@ public class AllWebsiteInformationModel {
     private StatementOfFaithModel statementOfFaith;
     private SozoPageModel sozoPage;
     private WorshipPageModel worshipPage;
+    private KidYouthModel kidYouthPage;
+
+    public KidYouthModel getKidYouthPage() {
+        return kidYouthPage;
+    }
+
+    public void setKidYouthPage(KidYouthModel kidYouthPage) {
+        this.kidYouthPage = kidYouthPage;
+    }
 
     public SozoPageModel getSozoPage() {
         return sozoPage;
