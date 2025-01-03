@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Service
 public class CardService {
@@ -97,6 +98,19 @@ public class CardService {
         ArrayList<DisplayCardResponse> leadershipArrayListCards = new ArrayList<>();
         ArrayList<DisplayCardResponse> ourMinistriesArrayListCards = new ArrayList<>();
         ArrayList<DisplayCardResponse> missionsArrayListCards = new ArrayList<>();
+
+        System.out.println(allWebsiteInformationModel.getAllWatchCards().size());
+
+        //grabs all the sermons inside series and add thems to the allwatchCardsresponse if they aren't already in there.
+        for(SeriesCardResponse seriesCardResponse: allWebsiteInformationModel.getAllSeriesCards()) {
+            for(AllWatchCardsResponse allWatchCardsResponse: seriesCardResponse.getSermons()) {
+                if (!Arrays.asList(allWebsiteInformationModel.getAllWatchCards()).contains(allWatchCardsResponse)) {
+                    allWebsiteInformationModel.getAllWatchCards().add(allWatchCardsResponse);
+                }
+            }
+        }
+
+        System.out.println(allWebsiteInformationModel.getAllWatchCards().size());
 
         //Sort the lists
         for(DisplayCardResponse displayCardResponse: allWebsiteInformationModel.getDisplayCards()) {
