@@ -102,13 +102,13 @@ public class CardService {
         System.out.println(allWebsiteInformationModel.getAllWatchCards().size());
 
         //grabs all the sermons inside series and add thems to the allwatchCardsresponse if they aren't already in there.
-        for(SeriesCardResponse seriesCardResponse: allWebsiteInformationModel.getAllSeriesCards()) {
-            for(AllWatchCardsResponse allWatchCardsResponse: seriesCardResponse.getSermons()) {
-                if (!Arrays.asList(allWebsiteInformationModel.getAllWatchCards()).contains(allWatchCardsResponse)) {
-                    allWebsiteInformationModel.getAllWatchCards().add(allWatchCardsResponse);
-                }
-            }
-        }
+//        for(SeriesCardResponse seriesCardResponse: allWebsiteInformationModel.getAllSeriesCards()) {
+//            for(AllWatchCardsResponse allWatchCardsResponse: seriesCardResponse.getSermons()) {
+//                if (!Arrays.asList(allWebsiteInformationModel.getAllWatchCards()).contains(allWatchCardsResponse)) {
+//                    allWebsiteInformationModel.getAllWatchCards().add(allWatchCardsResponse);
+//                }
+//            }
+//        }
 
         System.out.println(allWebsiteInformationModel.getAllWatchCards().size());
 
@@ -127,13 +127,6 @@ public class CardService {
                 ministriesArrayListCards.add(displayCardResponse);
             }
         }
-        System.out.println(allWebsiteInformationModel.getDisplayCards());
-        System.out.println(allWebsiteInformationModel.getDisplayCards().size());
-        System.out.println(ministriesArrayListCards.size());
-        System.out.println(leadershipArrayListCards.size());
-        System.out.println(ourMinistriesArrayListCards.size());
-        System.out.println(missionsArrayListCards.size());
-
 
         //ministries we support
         MinistriesWeSupportModel ministriesWeSupportModel = new MinistriesWeSupportModel();
@@ -152,7 +145,6 @@ public class CardService {
         ourMinistriesModel.setTitle(allWebsiteInformationModel.getOurMinistriesPage().getTitle());
         ourMinistriesModel.setCoverPhoto(allWebsiteInformationModel.getOurMinistriesPage().getCoverPhoto());
         ourMinistriesModel.setDisplayCards(ourMinistriesArrayListCards);
-
 
         //Mission Trips
         MissionsModel missionsModel = new MissionsModel();
