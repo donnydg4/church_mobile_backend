@@ -18,7 +18,6 @@ import reactor.core.publisher.Mono;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 
 @Service
 public class CardService {
@@ -146,6 +145,17 @@ public class CardService {
         allWebsiteInformationModel.setOurMinistriesPage(ourMinistriesModel);
         allWebsiteInformationModel.setMissionsPage(missionsModel);
 
+        //Worship Page
+        WorshipPageModel worshipPageModel = new WorshipPageModel();
+        worshipPageModel.setVideoUrl(allWebsiteInformationModel.getWorshipPage().getVideoUrl());
+        worshipPageModel.setWorshipPageTitle(allWebsiteInformationModel.getWorshipPage().getWorshipPageTitle());
+        worshipPageModel.setAudioTitle(allWebsiteInformationModel.getWorshipPage().getAudioTitle());
+        worshipPageModel.setAudioImg(allWebsiteInformationModel.getWorshipPage().getAudioImg());
+        worshipPageModel.setVideoTitle(allWebsiteInformationModel.getWorshipPage().getVideoTitle());
+        worshipPageModel.setMusicVideosImageUrls(allWebsiteInformationModel.getWorshipPage().getMusicVideosImageUrls());
+        worshipPageModel.setAudioFiles(allWebsiteInformationModel.getWorshipPage().getAudioFiles());
+
+        allWebsiteInformationModel.setWorshipPage(worshipPageModel);
 
         //set calendar events to have the same start date as the model it's in
         ArrayList<CalendarModel> allCalendarInformation;
@@ -174,12 +184,14 @@ public class CardService {
                 }
             }
         }
+
         System.out.println(temporaryAllWatchCardsResponse.size());
         //okay so this works. I now have the 30 that aren't in the series list, which is great.
         temporaryAllWatchCardsResponse2.removeAll(temporaryAllWatchCardsResponse);
         System.out.println(temporaryAllWatchCardsResponse2.size());
 
         sortSermonsIntoSeries(allWebsiteInformationModel.getDisplayCards());
+
 
         allWebsiteInformationModel.setAllCalendarInformation(allCalendarInformation);
         allChurchWebsiteInformationRepository.save(allWebsiteInformationModel).block();
