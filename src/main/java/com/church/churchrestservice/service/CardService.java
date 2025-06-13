@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Service
 public class CardService {
@@ -98,6 +99,19 @@ public class CardService {
         ArrayList<DisplayCardResponse> ourMinistriesArrayListCards = new ArrayList<>();
         ArrayList<DisplayCardResponse> missionsArrayListCards = new ArrayList<>();
 
+        System.out.println(allWebsiteInformationModel.getAllWatchCards().size());
+
+        //grabs all the sermons inside series and add thems to the allwatchCardsresponse if they aren't already in there.
+//        for(SeriesCardResponse seriesCardResponse: allWebsiteInformationModel.getAllSeriesCards()) {
+//            for(AllWatchCardsResponse allWatchCardsResponse: seriesCardResponse.getSermons()) {
+//                if (!Arrays.asList(allWebsiteInformationModel.getAllWatchCards()).contains(allWatchCardsResponse)) {
+//                    allWebsiteInformationModel.getAllWatchCards().add(allWatchCardsResponse);
+//                }
+//            }
+//        }
+
+        System.out.println(allWebsiteInformationModel.getAllWatchCards().size());
+
         //Sort the lists
         for(DisplayCardResponse displayCardResponse: allWebsiteInformationModel.getDisplayCards()) {
             if (displayCardResponse.getType().equals("OUR MINISTRY")) {
@@ -113,13 +127,6 @@ public class CardService {
                 ministriesArrayListCards.add(displayCardResponse);
             }
         }
-        System.out.println(allWebsiteInformationModel.getDisplayCards());
-        System.out.println(allWebsiteInformationModel.getDisplayCards().size());
-        System.out.println(ministriesArrayListCards.size());
-        System.out.println(leadershipArrayListCards.size());
-        System.out.println(ourMinistriesArrayListCards.size());
-        System.out.println(missionsArrayListCards.size());
-
 
         //ministries we support
         MinistriesWeSupportModel ministriesWeSupportModel = new MinistriesWeSupportModel();
@@ -139,7 +146,6 @@ public class CardService {
         ourMinistriesModel.setCoverPhoto(allWebsiteInformationModel.getOurMinistriesPage().getCoverPhoto());
         ourMinistriesModel.setDisplayCards(ourMinistriesArrayListCards);
 
-
         //Mission Trips
         MissionsModel missionsModel = new MissionsModel();
         missionsModel.setTitle(allWebsiteInformationModel.getMissionsPage().getTitle());
@@ -152,6 +158,17 @@ public class CardService {
         allWebsiteInformationModel.setOurMinistriesPage(ourMinistriesModel);
         allWebsiteInformationModel.setMissionsPage(missionsModel);
 
+        //Worship Page
+        WorshipPageModel worshipPageModel = new WorshipPageModel();
+        worshipPageModel.setVideoUrl(allWebsiteInformationModel.getWorshipPage().getVideoUrl());
+        worshipPageModel.setWorshipPageTitle(allWebsiteInformationModel.getWorshipPage().getWorshipPageTitle());
+        worshipPageModel.setAudioTitle(allWebsiteInformationModel.getWorshipPage().getAudioTitle());
+        worshipPageModel.setAudioImg(allWebsiteInformationModel.getWorshipPage().getAudioImg());
+        worshipPageModel.setVideoTitle(allWebsiteInformationModel.getWorshipPage().getVideoTitle());
+        worshipPageModel.setMusicVideosImageUrls(allWebsiteInformationModel.getWorshipPage().getMusicVideosImageUrls());
+        worshipPageModel.setAudioFiles(allWebsiteInformationModel.getWorshipPage().getAudioFiles());
+
+        allWebsiteInformationModel.setWorshipPage(worshipPageModel);
 
         //set calendar events to have the same start date as the model it's in
         ArrayList<CalendarModel> allCalendarInformation;
