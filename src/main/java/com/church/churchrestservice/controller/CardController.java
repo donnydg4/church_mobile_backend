@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
 @RequestMapping(value = "/church")
 public class CardController {
 
-    private CardService cardService;
+    private final CardService cardService;
 
     @Autowired
     public CardController(CardService cardService) {

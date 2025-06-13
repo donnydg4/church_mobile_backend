@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Service
 public class CardService {
@@ -79,7 +80,7 @@ public class CardService {
         return allChurchInformationRepository.findById("1");
     }
 
-    ///////////WEBSITE
+    /// ////////WEBSITE
 
     public Flux<CalendarModel> getAllCalendarEvents() {
         return calendarEventsRepository.findAll();
@@ -99,7 +100,7 @@ public class CardService {
         ArrayList<DisplayCardResponse> missionsArrayListCards = new ArrayList<>();
 
         //Sort the lists
-        for(DisplayCardResponse displayCardResponse: allWebsiteInformationModel.getDisplayCards()) {
+        for (DisplayCardResponse displayCardResponse : allWebsiteInformationModel.getDisplayCards()) {
             if (displayCardResponse.getType().equals("OUR MINISTRY")) {
                 ourMinistriesArrayListCards.add(displayCardResponse);
             }
@@ -113,13 +114,6 @@ public class CardService {
                 ministriesArrayListCards.add(displayCardResponse);
             }
         }
-        System.out.println(allWebsiteInformationModel.getDisplayCards());
-        System.out.println(allWebsiteInformationModel.getDisplayCards().size());
-        System.out.println(ministriesArrayListCards.size());
-        System.out.println(leadershipArrayListCards.size());
-        System.out.println(ourMinistriesArrayListCards.size());
-        System.out.println(missionsArrayListCards.size());
-
 
         //ministries we support
         MinistriesWeSupportModel ministriesWeSupportModel = new MinistriesWeSupportModel();
@@ -158,28 +152,46 @@ public class CardService {
         allCalendarInformation = allWebsiteInformationModel.getAllCalendarInformation();
 
         //change all the start date to be their parent start date regardless of what happens
-        for (CalendarModel calendarModel: allCalendarInformation) {
-            for (CalendarEventsModel calendarEventsModel: calendarModel.getEvents()) {
+        for (CalendarModel calendarModel : allCalendarInformation) {
+            for (CalendarEventsModel calendarEventsModel : calendarModel.getEvents()) {
                 calendarEventsModel.setStartDate(calendarModel.getDate());
-                Instant todaysDate = Instant.now();
-                System.out.println(todaysDate);
-                LocalDate date1 = LocalDate.now();
-                System.out.println(date1);
-                LocalDate date2 = LocalDate.now();
-                System.out.println(date2);
-                if (date1.equals(date2)) {
-                    System.out.println("date 1 equals date2");
-                }
             }
         }
 
-        allWebsiteInformationModel.setAllCalendarInformation(allCalendarInformation);
+        //TODO: maybe compare what's already in the series list of sermons to waht's currently in the allWatchCardsArray? Not sure yet.
+        int dbAllWatchCardsCall = allChurchWebsiteInformationRepository.findById("1").block().getAllWatchCards().size();
 
+        ArrayList<AllWatchCardsResponse> temporaryAllWatchCardsResponse = new ArrayList<>();
+        ArrayList<AllWatchCardsResponse> temporaryAllWatchCardsResponse2 = new ArrayList<>(allWebsiteInformationModel.getAllWatchCards());
+        if (dbAllWatchCardsCall != 0) {
+            for (SeriesCardResponse seriesCardResponse : allWebsiteInformationModel.getAllSeriesCards()) {
+                for (AllWatchCardsResponse mainWatchCard: allWebsiteInformationModel.getAllWatchCards()) {
+                    for (AllWatchCardsResponse otherWatchCard: seriesCardResponse.getSermons()) {
+                        if (mainWatchCard.getTitle().equals(otherWatchCard.getTitle())) {
+                            temporaryAllWatchCardsResponse.add(mainWatchCard);
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println(temporaryAllWatchCardsResponse.size());
+        //okay so this works. I now have the 30 that aren't in the series list, which is great.
+        temporaryAllWatchCardsResponse2.removeAll(temporaryAllWatchCardsResponse);
+        System.out.println(temporaryAllWatchCardsResponse2.size());
+
+        sortSermonsIntoSeries(allWebsiteInformationModel.getDisplayCards());
+
+        allWebsiteInformationModel.setAllCalendarInformation(allCalendarInformation);
         allChurchWebsiteInformationRepository.save(allWebsiteInformationModel).block();
     }
 
     public Mono<AllWebsiteInformationModel> getAllWebsiteInformation() {
         return allChurchWebsiteInformationRepository.findById("1");
+    }
+
+    private void sortSermonsIntoSeries(ArrayList<DisplayCardResponse> displayCards) {
+
+
     }
 
 }
