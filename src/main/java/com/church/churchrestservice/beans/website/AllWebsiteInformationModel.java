@@ -29,6 +29,15 @@ public class AllWebsiteInformationModel {
     private SozoPageModel sozoPage;
     private WorshipPageModel worshipPage;
     private KidYouthModel kidYouthPage;
+    private AppConfig appConfig;
+
+    public AppConfig getAppConfig() {
+        return appConfig;
+    }
+
+    public void setAppConfig(AppConfig appConfig) {
+        this.appConfig = appConfig;
+    }
 
     public KidYouthModel getKidYouthPage() {
         return kidYouthPage;

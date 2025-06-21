@@ -8,6 +8,7 @@ import com.church.churchrestservice.beans.calendar.CalendarEventsModel;
 import com.church.churchrestservice.beans.calendar.CalendarModel;
 import com.church.churchrestservice.beans.shared.*;
 import com.church.churchrestservice.beans.website.AllWebsiteInformationModel;
+import com.church.churchrestservice.beans.website.AppConfig;
 import com.church.churchrestservice.beans.website.MainEventsModel;
 import com.church.churchrestservice.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import reactor.core.publisher.Mono;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class CardService {
@@ -90,6 +93,8 @@ public class CardService {
     }
 
     public void addWebsiteInformation(AllWebsiteInformationModel allWebsiteInformationModel) {
+
+        allWebsiteInformationModel.setAppConfig(allWebsiteInformationModel.getAppConfig());
 
         //TODO: ALL OF THIS NEEDS TO BE MOVED TO A SEPARATE POST CALL along with the DATA modifications as this is very inefficient every time do to this.
         //create Display Cards list for each model
@@ -168,6 +173,7 @@ public class CardService {
             }
         }
 
+
         //TODO: maybe compare what's already in the series list of sermons to waht's currently in the allWatchCardsArray? Not sure yet.
         int dbAllWatchCardsCall = allChurchWebsiteInformationRepository.findById("1").block().getAllWatchCards().size();
 
@@ -185,25 +191,51 @@ public class CardService {
             }
         }
 
-        System.out.println(temporaryAllWatchCardsResponse.size());
         //okay so this works. I now have the 30 that aren't in the series list, which is great.
         temporaryAllWatchCardsResponse2.removeAll(temporaryAllWatchCardsResponse);
-        System.out.println(temporaryAllWatchCardsResponse2.size());
 
-        sortSermonsIntoSeries(allWebsiteInformationModel.getDisplayCards());
+        //loop through the leftover sermons and store into hashmap of card, value
+        HashMap<AllWatchCardsResponse, String> sermonsThatCanBeASeriesCardHashMap = new HashMap<>();
+        for (AllWatchCardsResponse allWatchCardsResponse : temporaryAllWatchCardsResponse2) {
+            for (String result: allWebsiteInformationModel.getAppConfig().getSeriesNames()) {
+                if (allWatchCardsResponse.getTitle().contains(result)) {
+                    sermonsThatCanBeASeriesCardHashMap.put(allWatchCardsResponse, result);
+                }
+            }
+        }
 
+        ArrayList<AllWatchCardsResponse> finalWatchCardsArrayList = new ArrayList<>(sermonsThatCanBeASeriesCardHashMap.keySet());
+        finalWatchCardsArrayList.sort(Comparator.comparing(AllWatchCardsResponse::getTitle));
+        Collections.sort(allWebsiteInformationModel.getAppConfig().getSeriesNames());
 
+        ArrayList<SeriesCardResponse> seriesCardResponseArrayList = new ArrayList<>();
+
+        for (int i = 0; i < allWebsiteInformationModel.getAppConfig().getSeriesNames().size(); i++) {
+            String seriesName = allWebsiteInformationModel.getAppConfig().getSeriesNames().get(i);
+            String seriesImageUrl = allWebsiteInformationModel.getAppConfig().getSeriesImageUrls().get(i);
+            SeriesCardResponse seriesCardResponse = new SeriesCardResponse();
+            ArrayList<AllWatchCardsResponse> allWatchCardsResponseArrayList = new ArrayList<>();
+            for (int j = 0; j < finalWatchCardsArrayList.size(); j++) {
+                if (finalWatchCardsArrayList.get(j).getTitle().contains(allWebsiteInformationModel.getAppConfig().getSeriesNames().get(i))) {
+                    allWatchCardsResponseArrayList.add(finalWatchCardsArrayList.get(j));
+                }
+            }
+            seriesCardResponse.setImageUrl(seriesImageUrl);
+            seriesCardResponse.setTitle(seriesName);
+            seriesCardResponse.setCategory("series");
+            seriesCardResponse.setType("series");
+            seriesCardResponse.setSermons(allWatchCardsResponseArrayList);
+            Instant dateFromList = allWatchCardsResponseArrayList.stream().map(AllWatchCardsResponse::getDate).findFirst().get();
+            seriesCardResponse.setDate(dateFromList);
+            seriesCardResponseArrayList.add(seriesCardResponse);
+        }
         allWebsiteInformationModel.setAllCalendarInformation(allCalendarInformation);
+        allWebsiteInformationModel.getAllSeriesCards().addAll(seriesCardResponseArrayList);
         allChurchWebsiteInformationRepository.save(allWebsiteInformationModel).block();
     }
 
     public Mono<AllWebsiteInformationModel> getAllWebsiteInformation() {
         return allChurchWebsiteInformationRepository.findById("1");
-    }
-
-    private void sortSermonsIntoSeries(ArrayList<DisplayCardResponse> displayCards) {
-
-
     }
 
 }

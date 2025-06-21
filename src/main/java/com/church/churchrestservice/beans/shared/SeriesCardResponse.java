@@ -2,9 +2,8 @@ package com.church.churchrestservice.beans.shared;
 
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 
 @NoArgsConstructor
 @Document(value = "series_cards")
@@ -14,7 +13,7 @@ public class SeriesCardResponse {
     private String imageUrl;
     private String title;
     private String category;
-    private Date date;
+    private Instant date;
     private ArrayList<AllWatchCardsResponse> sermons;
 
     public String getType() {
@@ -49,11 +48,11 @@ public class SeriesCardResponse {
         this.category = category;
     }
 
-    public Date getDate() {
+    public Instant getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Instant date) {
         this.date = date;
     }
 
@@ -63,5 +62,17 @@ public class SeriesCardResponse {
 
     public void setSermons(ArrayList<AllWatchCardsResponse> sermons) {
         this.sermons = sermons;
+    }
+
+    @Override
+    public String toString() {
+        return "SeriesCardResponse{" +
+                "type='" + type + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", date=" + date +
+                ", sermons=" + sermons +
+                '}';
     }
 }

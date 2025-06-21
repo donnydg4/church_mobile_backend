@@ -1,9 +1,9 @@
 package com.church.churchrestservice.beans.shared;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Date;
+import java.time.Instant;
 
 @NoArgsConstructor
 @Document(value = "sermons_devotionals_speakers_cards")
@@ -15,7 +15,7 @@ public class AllWatchCardsResponse {
     private String category;
     private String videoId;
     private String description;
-    private Date date;
+    private Instant date;
 
     public String getType() {
         return type;
@@ -65,11 +65,24 @@ public class AllWatchCardsResponse {
         this.description = description;
     }
 
-    public Date getDate() {
+    public Instant getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Instant date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "type='" + type + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", videoId='" + videoId + '\'' +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                '}';
     }
 }
