@@ -82,7 +82,7 @@ public class CardService {
         return allChurchInformationRepository.findById("1");
     }
 
-    /// ////////WEBSITE
+    // -------------------WEBSITE-----------------------------
 
     public Flux<CalendarModel> getAllCalendarEvents() {
         return calendarEventsRepository.findAll();
@@ -173,7 +173,81 @@ public class CardService {
             }
         }
 
+//        //TODO: maybe compare what's already in the series list of sermons to waht's currently in the allWatchCardsArray? Not sure yet.
+//        ArrayList<AllWatchCardsResponse> dbAllWatchCardsCall = Objects.requireNonNull(allChurchWebsiteInformationRepository.findById("1").block()).getAllWatchCards();
+//        ArrayList<SeriesCardResponse> dbAllSeriesCardsCallList = Objects.requireNonNull(allChurchWebsiteInformationRepository.findById("1").block()).getAllSeriesCards();
+//
+//        System.out.println(dbAllWatchCardsCall.size()); //134
+//
+//        ArrayList<AllWatchCardsResponse> watchCardsThatAreINSeriesORAllWatchCards = new ArrayList<>();
+//
+//        if (dbAllWatchCardsCall != null && dbAllWatchCardsCall.size() > 0) {
+//            if (dbAllSeriesCardsCallList != null && dbAllSeriesCardsCallList.size() > 0) {
+//                for (SeriesCardResponse seriesCardResponse : dbAllSeriesCardsCallList) {
+//                    for (AllWatchCardsResponse mainWatchCard : allWebsiteInformationModel.getAllWatchCards()) {
+//                        for (AllWatchCardsResponse otherWatchCard : seriesCardResponse.getSermons()) {
+//                            if (mainWatchCard.getTitle().equals(otherWatchCard.getTitle())) {
+//                                watchCardsThatAreINSeriesORAllWatchCards.add(mainWatchCard);
+//                            }
+//                        }
+//                    }
+//                }
+//                //okay so this works. I now have the 30 that aren't in the series list, which is great.
+//                dbAllWatchCardsCall.removeAll(watchCardsThatAreINSeriesORAllWatchCards);
+//            }
+//        } else {
+//            watchCardsThatAreINSeriesORAllWatchCards.addAll(dbAllWatchCardsCall);
+//        }
+//
+//        System.out.println(watchCardsThatAreINSeriesORAllWatchCards); // should contain 110
+//
+//        //loop through the leftover sermons and store into hashmap of card, value
+//        HashMap<AllWatchCardsResponse, String> sermonsThatCanBeASeriesCardHashMap = new HashMap<>();
+//        for (AllWatchCardsResponse allWatchCardsResponse : dbAllWatchCardsCall) {
+//            for (String result : allWebsiteInformationModel.getAppConfig().getSeriesNames()) {
+//                if (allWatchCardsResponse.getTitle().contains(result)) {
+//                    sermonsThatCanBeASeriesCardHashMap.put(allWatchCardsResponse, result);
+//                }
+//            }
+//        }
+//
+//        ArrayList<AllWatchCardsResponse> finalWatchCardsArrayList = new ArrayList<>(sermonsThatCanBeASeriesCardHashMap.keySet());
+//
+//        if (!finalWatchCardsArrayList.isEmpty()) {
+//
+//            //TODO: SORT the arraylist that has the difference between the 2 + sort the appconfig
+//            finalWatchCardsArrayList.sort(Comparator.comparing(AllWatchCardsResponse::getTitle));
+//            Collections.sort(allWebsiteInformationModel.getAppConfig().getSeriesNames());
+//            System.out.println(allWebsiteInformationModel.getAppConfig().getSeriesNames());
+//            ArrayList<SeriesCardResponse> seriesCardResponseArrayList = new ArrayList<>();
+//
+//            for (int i = 0; i < allWebsiteInformationModel.getAppConfig().getSeriesNames().size(); i++) {
+//                String seriesName = allWebsiteInformationModel.getAppConfig().getSeriesNames().get(i);
+//                String seriesImageUrl = allWebsiteInformationModel.getAppConfig().getSeriesImageUrls().get(i);
+//                SeriesCardResponse seriesCardResponse = new SeriesCardResponse();
+//                ArrayList<AllWatchCardsResponse> allWatchCardsResponseArrayList = new ArrayList<>();
+//                for (int j = 0; j < finalWatchCardsArrayList.size(); j++) {
+//                    if (finalWatchCardsArrayList.get(j).getTitle().contains(allWebsiteInformationModel.getAppConfig().getSeriesNames().get(i))) {
+//                        allWatchCardsResponseArrayList.add(finalWatchCardsArrayList.get(j));
+//                    }
+//                }
+//                seriesCardResponse.setImageUrl(seriesImageUrl);
+//                seriesCardResponse.setTitle(seriesName);
+//                seriesCardResponse.setCategory("series");
+//                seriesCardResponse.setType("series");
+//                seriesCardResponse.setSermons(allWatchCardsResponseArrayList);
+//                Instant dateFromList = allWatchCardsResponseArrayList.stream().map(AllWatchCardsResponse::getDate).findFirst().get();
+//                seriesCardResponse.setDate(dateFromList);
+//                seriesCardResponseArrayList.add(seriesCardResponse);
+//            }
+//            allWebsiteInformationModel.setAllSeriesCards(seriesCardResponseArrayList);
+//        }
 
+        allWebsiteInformationModel.setAllCalendarInformation(allCalendarInformation);
+        allChurchWebsiteInformationRepository.save(allWebsiteInformationModel).block();
+    }
+
+    public void addSeriesCardsAndWatchCards(AllWebsiteInformationModel allWebsiteInformationModel) {
         //TODO: maybe compare what's already in the series list of sermons to waht's currently in the allWatchCardsArray? Not sure yet.
         ArrayList<AllWatchCardsResponse> dbAllWatchCardsCall = Objects.requireNonNull(allChurchWebsiteInformationRepository.findById("1").block()).getAllWatchCards();
         ArrayList<SeriesCardResponse> dbAllSeriesCardsCallList = Objects.requireNonNull(allChurchWebsiteInformationRepository.findById("1").block()).getAllSeriesCards();
@@ -243,8 +317,6 @@ public class CardService {
             }
             allWebsiteInformationModel.setAllSeriesCards(seriesCardResponseArrayList);
         }
-
-        allWebsiteInformationModel.setAllCalendarInformation(allCalendarInformation);
         allChurchWebsiteInformationRepository.save(allWebsiteInformationModel).block();
     }
 
