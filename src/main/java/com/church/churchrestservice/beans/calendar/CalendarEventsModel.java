@@ -15,6 +15,24 @@ public class CalendarEventsModel {
     private String description;
     private String type;
     private boolean featured;
+    private String pdfResource;
+    private String pdfResourceName;
+
+    public String getPdfResourceName() {
+        return pdfResourceName;
+    }
+
+    public void setPdfResourceName(String pdfResourceName) {
+        this.pdfResourceName = pdfResourceName;
+    }
+
+    public String getPdfResource() {
+        return pdfResource;
+    }
+
+    public void setPdfResource(String pdfResource) {
+        this.pdfResource = pdfResource;
+    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -86,5 +104,22 @@ public class CalendarEventsModel {
 
     public void setFeatured(boolean featured) {
         this.featured = featured;
+    }
+
+    @Override
+    public String toString() {
+        return "CalendarEventsModel{" +
+                "imageUrl='" + imageUrl + '\'' +
+                ", title='" + title + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", location='" + location + '\'' +
+                ", time='" + time + '\'' +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                ", featured=" + featured +
+                ", pdfResource='" + pdfResource + '\'' +
+                ", pdfResourceName='" + pdfResourceName + '\'' +
+                '}';
     }
 }

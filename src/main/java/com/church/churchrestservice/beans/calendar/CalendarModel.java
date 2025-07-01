@@ -27,4 +27,12 @@ public class CalendarModel {
     public void setEvents(ArrayList<CalendarEventsModel> events) {
         this.events = events;
     }
+
+    @Override
+    public String toString() {
+        return "CalendarModel{" +
+                "date=" + date +
+                ", events=" + events +
+                '}';
+    }
 }

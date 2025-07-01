@@ -81,11 +81,6 @@ public class CardController {
         cardService.addWebsiteInformation(allWebsiteInformationModel);
     }
 
-    @PostMapping(value = "/website/addAllWatchCardsAndSeriesCards")
-    private void addWatchAndSeriesCards(@RequestBody AllWebsiteInformationModel allWebsiteInformationModel) {
-        cardService.addSeriesCardsAndWatchCards(allWebsiteInformationModel);
-    }
-
     @GetMapping(value = "/website/allWebsiteInformation")
     private Mono<AllWebsiteInformationModel> getAllWebsiteChurchInformation() {
         return cardService.getAllWebsiteInformation();
